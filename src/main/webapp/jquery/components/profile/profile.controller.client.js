@@ -18,12 +18,23 @@ function init(){
 	$email=$('#email');
 	$dateOfBirth=$('#dateofbirth');
 	$phone=$('#phone');
+	userService.loadprofile()
+	.then(renderUser);
 
 	
 	$updateBtn=$("#updateBtn")
 	.click(updateUser);
 	
 	$logoutBtn=$('#logoutBtn').click(logout);
+	
+}
+
+function renderUser(user){
+	$username.val(user.username);
+	$role.val(user.role);
+	$phone.val(user.phone);
+	$email.val(user.email);
+	$dateOfBirth.val(user.dateOfBirth);
 	
 }
 

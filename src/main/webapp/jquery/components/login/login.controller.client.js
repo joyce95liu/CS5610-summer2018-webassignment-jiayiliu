@@ -28,7 +28,7 @@
     	if(response===null){
      		alert("User doesn't exist or password is incorrect");
      	}else{
-     		
+     		window.location.href='../profile/profile.template.client.html';
      	}
     }
     
@@ -37,8 +37,8 @@
     	$passwordFld.val('');
     }
     
-    function signup(){
-    	
+   function signup(){
+    	window.location.href='../register/register.templete.client.html';
     }
     
  })();

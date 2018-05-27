@@ -32,12 +32,12 @@
         if(response===null){
        	alert('the username has already been taken');
         }else{
-        	
+        	window.location.href='../profile/profile.template.client.html';
         }
     }
     
     function login(){
-    	
+    	window.location.href='../login/login.template.client.html';
     }
     
    

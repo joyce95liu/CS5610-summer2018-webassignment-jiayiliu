@@ -87,6 +87,12 @@ public class UserService {
 		return null;
 	}
     }
+	
+	@GetMapping("/api/profile")
+	public User loadprofile(HttpSession session) {
+	User currentUser = (User)session.getAttribute("currentUser");    
+	return currentUser;
+	}
 
     
   

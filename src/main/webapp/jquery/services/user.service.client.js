@@ -7,6 +7,7 @@ function UserServiceClient() {
 	this.updateUser=updateUser;
 	this.login=login;
 	this.register=register;
+	this.loadprofile=loadprofile;
 	
 	
 	var self=this;
@@ -92,6 +93,16 @@ function UserServiceClient() {
 			return null;
 		});
 	}
+	
+	
+	function loadprofile(){  
+		return fetch('http://localhost:8080/api/profile',{
+			credentials:'same-origin',
+		})
+		.then(function(response) {
+			return response.json();
+		});
+    }
 	
 
 	
