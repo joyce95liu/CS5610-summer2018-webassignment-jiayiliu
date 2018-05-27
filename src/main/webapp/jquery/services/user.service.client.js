@@ -5,6 +5,7 @@ function UserServiceClient() {
 	this.deleteUser = deleteUser;
 	this.findUserById=findUserById;
 	this.updateUser=updateUser;
+	this.login=login;
 	
 	
 	var self=this;
@@ -51,6 +52,27 @@ function UserServiceClient() {
 			}
 		})
 	}
+		
+	function login(user){
+		return fetch('http://localhost:8080/api/login',{
+		method:'post',
+		credentials:'same-origin',
+		body:JSON.stringify(user),
+		headers:{
+			'content-type':'application/json'
+		}
+	})
+	
+	.then(response => response.json())
+	.then(function(response){
+		return response;
+	})
+	.catch(function(error) {
+		return null;
+	});
+
+}
+	
 	
 	
 	

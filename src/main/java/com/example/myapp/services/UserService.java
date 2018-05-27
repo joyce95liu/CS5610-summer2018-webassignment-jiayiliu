@@ -4,6 +4,8 @@ package com.example.myapp.services;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,6 +64,19 @@ public class UserService {
 		}
 		return null;
 	}
+	
+	
+	@PostMapping("/api/login")
+	public User login(@RequestBody User credentials,HttpSession session) {
+		Iterable<User> users=userRepository.findUserByCredentials(credentials.getusername(),credentials.getPassword());
+	if(users.iterator().hasNext()) {
+	User user=users.iterator().next();
+	   session.setAttribute("currentUser", user);
+	   return user;
+	  }else { 
+	 return null;
+	  }
+}
 
     
   
