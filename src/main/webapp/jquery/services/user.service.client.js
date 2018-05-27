@@ -6,6 +6,7 @@ function UserServiceClient() {
 	this.findUserById=findUserById;
 	this.updateUser=updateUser;
 	this.login=login;
+	this.register=register;
 	
 	
 	var self=this;
@@ -72,6 +73,28 @@ function UserServiceClient() {
 	});
 
 }
+	
+	function register(user){
+		return fetch('http://localhost:8080/api/register',{
+			method:'post',
+			credentials:'same-origin',
+			body:JSON.stringify(user),
+			headers:{
+				'content-type':'application/json'
+			}
+		})
+		
+		.then(response => response.json())
+		.then(function(response){
+			return response;
+		})
+		.catch(function(error) {
+			return null;
+		});
+	}
+	
+
+	
 	
 	
 	

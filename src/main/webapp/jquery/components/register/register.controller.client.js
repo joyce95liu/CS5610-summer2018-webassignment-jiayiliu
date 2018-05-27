@@ -6,8 +6,38 @@
     $(main);
 
     function main() {
-    	
+      	$usernameFld=$('#Username');
+    	$passwordFld=$('#inputPassword');
+    	$verifyPasswordFld=$('#verifyPassword');
+    	$registerBtn=$('#updateBtn');
+    	$loginBtn=$('#loginBtn');
+    	$registerBtn.click(register);
+    	$loginBtn.click(login);
     
+    }
+    
+    function register() { 
+    	var $username=$usernameFld.val();
+    	var $password=$passwordFld.val();
+    	var $verifypassworde=$verifyPasswordFld.val();
+    	if($password!=$verifypassworde){
+    		alert('password should match!')
+    	}
+		var $user=new User($username,$password);
+        userService.register($user).then(success);   
+    }
+    
+    function success(response) {
+    	console.log(response);
+        if(response===null){
+       	alert('the username has already been taken');
+        }else{
+        	
+        }
+    }
+    
+    function login(){
+    	
     }
     
    
