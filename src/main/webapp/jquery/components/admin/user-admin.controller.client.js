@@ -73,12 +73,39 @@
     	
     }
     
-    function deleteUser(){
+    function deleteUser() { 
+    	var $deleteBtn=$(event.currentTarget);
+		var $userId=$deleteBtn
+		.parent()
+		.parent()
+		.parent()
+		.attr('id');
+		
+		userService
+		.deleteUser($userId)
+		.then(findAllUsers);
+   	}
+    
+    function findUserById() {
+    	var $editBtn=$(event.currentTarget);
     	
+    	var $userId=$editBtn
+    	.parent()
+		.parent()
+		.parent()
+		.attr('id');
+    	
+    	 $inputrowId.attr('id',$userId);
+    	userService
+    	.findUserById($userId)
+    	.then(renderUser);
     }
     
-    function findUserById(){
-    	
+    function renderUser(user){
+    	$usernameFld.val(user.username);
+    	$passwordFld.val(user.password);
+    	$firstNameFld.val(user.firstName);
+    	$lastNameFld.val(user.lastName);
     }
     
 })();
