@@ -40,7 +40,22 @@ function renderUser(user){
 
 function updateUser(){
 	
+	var $user={
+			username:$username.val(),
+			role:$role.val(),
+			phone:$phone.val(),
+			email:$email.val(),
+	        dateOfBirth:$dateOfBirth.val()
+	};
+	userService
+	.updateprofile($user)
+	.then(success);
 }
+
+function success(response){
+	alert('The update is successful!');
+}
+
 
 function logout(){
 	

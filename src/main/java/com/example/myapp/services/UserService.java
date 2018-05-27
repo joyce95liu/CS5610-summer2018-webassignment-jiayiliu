@@ -93,6 +93,18 @@ public class UserService {
 	User currentUser = (User)session.getAttribute("currentUser");    
 	return currentUser;
 	}
+	
+	@PutMapping("/api/profile")
+	public User updateprofile(@RequestBody User user,HttpSession session){
+		User currentUser = (User)session.getAttribute("currentUser");
+		    currentUser.setusername(user.getusername());
+		    currentUser.setEmail(user.getEmail());
+		    currentUser.setPhone(user.getPhone());
+		    currentUser.setRole(user.getRole());
+		    currentUser.setDateOfBirth(user.getDateOfBirth());
+		    userRepository.save(currentUser);
+		    return currentUser;
+	}
 
     
   
