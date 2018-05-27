@@ -2,15 +2,15 @@
     var $usernameFld, $passwordFld;
     var $removeBtn, $editBtn, $createBtn,$updateBtn;
     var $firstNameFld, $lastNameFld;
-    var $userRowTemplate, $tbody,$role;
-   
-   
+    var $userRowTemplate, $tbody;
+    var $role;
+    var $inputrowId;
     var userService = new UserServiceClient();
     $(main);
 
     function main() {
     	$tbody=$('tbody');
-    	
+    	$userRowTemplate=$('.wbdv-template');
     	$createBtn=$('#createUser');
     	$updateBtn=$('#update1');
     	$removeBtn=$('#wbdv-remove');
@@ -20,12 +20,66 @@
 		$firstNameFld=$('#firstNameFld');
 		$lastNameFld=$('#lastNameFld');
 		$role=$('#roleFld');
-    	 	
+    	$inputrowId=$('.wbdv-form');
+    	
     	$updateBtn.click(updateUser);
     	$createBtn.click(createUser);
     	
     	
+    	findAllUsers(); 
     }
-       
+    function createUser() { 
+    
+		var $user={
+				username:$usernameFld.val(),
+				password:$passwordFld.val(),
+				firstName:$firstNameFld.val(),
+				lastName:$lastNameFld.val(),
+				role:$role.val()
+		}
+			
+		userService.createUser($user)
+		.then(findAllUsers);
+		
+    	}
+    
+    function findAllUsers() { 
+		userService
+		.findAllUsers()
+		.then(renderUsers);
+    }
+    
+    function renderUsers(users) { 
+		$tbody.empty();
+		for(var i=0;i<users.length;i++){
+			var user=users[i];
+			var $clone=$userRowTemplate.clone();
+			
+			$clone.attr('id',user.id)
+			$clone.find('#wbdv-remove').click(deleteUser);
+			$clone.find('#wbdv-edit').click(findUserById);
+			$clone.find('.wbdv-username')
+			.html(user.username)
+			$clone.find('.wbdv-first-name')
+			.html(user.firstName)
+			$clone.find('.wbdv-last-name')
+			.html(user.lastName)
+			
+			$tbody.append($clone);
+         }
+    }
+    
+    function updateUser(){
+    	
+    }
+    
+    function deleteUser(){
+    	
+    }
+    
+    function findUserById(){
+    	
+    }
     
 })();
+
