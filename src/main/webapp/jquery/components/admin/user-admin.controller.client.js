@@ -108,5 +108,19 @@
     	$lastNameFld.val(user.lastName);
     }
     
+    function updateUser(){
+    	
+    	var $username=$('#usernameFld').val();
+    	var $password=$('#passwordFld').val();
+    	var $firstName=$('#firstNameFld').val();
+    	var $lastName=$('#lastNameFld').val();
+    	var $role=$('#role').val();
+		var $user=new User($username,$password,$firstName,$lastName,$role);
+		var $userId=$inputrowId.attr('id');
+		userService
+		     .updateUser($userId,$user)
+		     .then(findAllUsers);
+    }
+    
 })();
 

@@ -4,6 +4,7 @@ function UserServiceClient() {
 	this.findAllUsers = findAllUsers;
 	this.deleteUser = deleteUser;
 	this.findUserById=findUserById;
+	this.updateUser=updateUser;
 	
 	
 	var self=this;
@@ -41,6 +42,15 @@ function UserServiceClient() {
 		})	
 	}
 	
+	function updateUser(userId,user){
+		return fetch(self.url+'/'+userId,{
+			method:'put',	
+			body:JSON.stringify(user),
+			headers:{
+				'content-type':'application/json'
+			}
+		})
+	}
 	
 	
 	
