@@ -1,5 +1,9 @@
 function UserServiceClient() {
-	this.url = '/api/user';
+	this.url = 'http://localhost:8080/api/user';
+	this.registerurl='http://localhost:8080/api/register';
+	this.loginurl='http://localhost:8080/api/login';
+	this.profileurl='http://localhost:8080/api/profile';
+	this.logouturl='http://localhost:8080/api/logout';
 	this.createUser = createUser;
 	this.findAllUsers = findAllUsers;
 	this.deleteUser = deleteUser;
@@ -9,12 +13,10 @@ function UserServiceClient() {
 	this.register=register;
 	this.loadprofile=loadprofile;
 	this.updateprofile=updateprofile;
-	
-	
+	this.logout=logout;
+		
 	var self=this;
-	
-	
-	
+		
 	function findAllUsers(){
 		return fetch(self.url)
 		.then(function(response) {
@@ -57,7 +59,7 @@ function UserServiceClient() {
 	}
 		
 	function login(user){
-		return fetch('http://localhost:8080/api/login',{
+		return fetch(self.loginurl,{
 		method:'post',
 		credentials:'same-origin',
 		body:JSON.stringify(user),
@@ -77,7 +79,7 @@ function UserServiceClient() {
 }
 	
 	function register(user){
-		return fetch('http://localhost:8080/api/register',{
+		return fetch(self.registerurl,{
 			method:'post',
 			credentials:'same-origin',
 			body:JSON.stringify(user),
@@ -97,17 +99,22 @@ function UserServiceClient() {
 	
 	
 	function loadprofile(){  
-		return fetch('http://localhost:8080/api/profile',{
+		return fetch(self.profileurl,{
 			credentials:'same-origin',
 		})
-		.then(function(response) {
-			return response.json();
+		
+		.then(response => response.json())
+		.then(function(response){
+			return response;
+		})
+		.catch(function(error) {
+			return null;
 		});
-    }
+	}
 	
-	
+		
 	function updateprofile(user){
-		return fetch('http://localhost:8080/api/profile',{
+		return fetch(self.profileurl,{
 			method:'put',
 			credentials:'same-origin',
 			body:JSON.stringify(user),
@@ -117,9 +124,13 @@ function UserServiceClient() {
 		});
 	}
 
+	function logout(){
+		return fetch(self.logouturl,{
+			method:'post',
+			credentials:'same-origin'
+		})
+	}
 	
-	
-	
-	
+		
 	
 }

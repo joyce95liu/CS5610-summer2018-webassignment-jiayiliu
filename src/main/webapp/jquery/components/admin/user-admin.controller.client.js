@@ -69,9 +69,6 @@
          }
     }
     
-    function updateUser(){
-    	
-    }
     
     function deleteUser() { 
     	var $deleteBtn=$(event.currentTarget);
@@ -103,7 +100,6 @@
     
     function renderUser(user){
     	$usernameFld.val(user.username);
-    	$passwordFld.val(user.password);
     	$firstNameFld.val(user.firstName);
     	$lastNameFld.val(user.lastName);
     }

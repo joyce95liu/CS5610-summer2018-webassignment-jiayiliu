@@ -18,24 +18,23 @@ function init(){
 	$email=$('#email');
 	$dateOfBirth=$('#dateofbirth');
 	$phone=$('#phone');
-	userService.loadprofile()
+	userService
+	.loadprofile()
 	.then(renderUser);
-
 	
-	$updateBtn=$("#updateBtn")
-	.click(updateUser);
-	
+	$updateBtn=$("#updateBtn").click(updateUser);	
 	$logoutBtn=$('#logoutBtn').click(logout);
 	
 }
 
 function renderUser(user){
+	if(user!=null){
 	$username.val(user.username);
 	$role.val(user.role);
 	$phone.val(user.phone);
 	$email.val(user.email);
 	$dateOfBirth.val(user.dateOfBirth);
-	
+	}
 }
 
 function updateUser(){
@@ -58,7 +57,18 @@ function success(response){
 
 
 function logout(){
-	
+	userService.logout();
+	clearprofilepage();
+	window.location.href='../login/login.template.client.html';
 }
+
+function clearprofilepage(){
+	$username.val('');
+	$role.val('');
+	$email.val('');
+	$dateOfBirth.val('');
+	$phone.val('');
+}
+
 
 })();

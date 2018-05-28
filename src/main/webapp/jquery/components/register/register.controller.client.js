@@ -21,25 +21,33 @@
     	var $password=$passwordFld.val();
     	var $verifypassworde=$verifyPasswordFld.val();
     	if($password!=$verifypassworde){
-    		alert('password should match!')
-    	}
+    		alert('password should match!');
+    		clearregisterform();
+    	}else{
 		var $user=new User($username,$password);
-        userService.register($user).then(success);   
+        userService.register($user).then(success); 
+    	}
     }
     
     function success(response) {
-    	console.log(response);
+    	 clearregisterform();
         if(response===null){
        	alert('the username has already been taken');
         }else{
         	window.location.href='../profile/profile.template.client.html';
         }
+       
     }
     
     function login(){
     	window.location.href='../login/login.template.client.html';
     }
     
+    function clearregisterform(){
+    	$usernameFld.val('');
+    	$passwordFld.val('');
+    	$verifyPasswordFld.val('');
+    }
    
     
 })();

@@ -19,8 +19,7 @@
     	var $username=$usernameFld.val();
     	var $password=$passwordFld.val();
     	var $user=new User($username,$password);
-        userService.login($user).then(success);  
-    	  
+        userService.login($user).then(success);      	  
     }
     
     function success(response) {
@@ -38,7 +37,7 @@
     }
     
    function signup(){
-    	window.location.href='../register/register.templete.client.html';
+    	window.location.href='../register/register.template.client.html';
     }
     
  })();
