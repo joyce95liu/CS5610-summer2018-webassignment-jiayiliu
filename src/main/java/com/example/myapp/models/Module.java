@@ -14,6 +14,14 @@ public class Module {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
+    private String title;
+    
+    @ManyToOne
+    @JsonIgnore
+    private Course course;
+    
+    
+    
     public int getId() {
 		return id;
 	}
@@ -38,10 +46,8 @@ public class Module {
 		this.course = course;
 	}
 
-	private String title;
+	
     
-    @ManyToOne
-    @JsonIgnore
-    private Course course;
+  
 }
 
