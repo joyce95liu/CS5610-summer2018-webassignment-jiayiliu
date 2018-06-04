@@ -9,6 +9,7 @@
     $(main);
 
     function main() {
+    	
     	$tbody=$('tbody');
     	$userRowTemplate=$('.wbdv-template');
     	$createBtn=$('#createUser');
