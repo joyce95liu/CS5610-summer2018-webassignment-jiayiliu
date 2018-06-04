@@ -50,6 +50,7 @@ public class ModuleService {
     	    return null;
     	}
     
+    //@DeleteMapping("/api/course/{courseId}/module/{moduleId}")
     @DeleteMapping("/api/module/{moduleId}")
     public void deleteModule(
     @PathVariable("moduleId") int id) {
