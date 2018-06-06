@@ -23,7 +23,7 @@ public class Module {
     @JsonIgnore
     private Course course;
     
-    @OneToMany(mappedBy="module")
+    @OneToMany(mappedBy="module", orphanRemoval = true)
     private List<Lesson> lessons;
 
     
