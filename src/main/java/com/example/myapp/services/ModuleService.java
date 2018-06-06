@@ -26,6 +26,10 @@ public class ModuleService {
     @Autowired
     ModuleRepository moduleRepository;
     
+    @GetMapping("/api/module")
+    public Iterable<Module> findAllModules() {
+        return moduleRepository.findAll(); 
+    }
 
     @GetMapping("/api/course/{courseId}/module")
 	public List<Module> findAllModulesForCourse(@PathVariable("courseId") int courseId) {
@@ -57,6 +61,8 @@ public class ModuleService {
     	moduleRepository.deleteById(id);
     }
 
+ 
+    
  
 }
 
