@@ -17,20 +17,35 @@ public class Widget {
 	private String text;
 	private int size;
 	private String name;
-	private String link;
+	private String href;
+	private String src;
 	private String listType;
+	private String listItems;
+	public String getListItems() {
+		return listItems;
+	}
+	public void setListItems(String listItems) {
+		this.listItems = listItems;
+	}
+	public String getSrc() {
+		return src;
+	}
+	public void setSrc(String src) {
+		this.src = src;
+	}
+	public String getHref() {
+		return href;
+	}
+	public void setHref(String href) {
+		this.href = href;
+	}
+	
 	
 	  public String getListType() {
 		return listType;
 	}
 	public void setListType(String listType) {
 		this.listType = listType;
-	}
-	public String getLink() {
-		return link;
-	}
-	public void setLink(String link) {
-		this.link = link;
 	}
 	public String getName() {
 		return name;
