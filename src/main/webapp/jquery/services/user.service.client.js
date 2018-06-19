@@ -1,9 +1,9 @@
 function UserServiceClient() {
-	this.url = 'http://localhost:8080/api/user';
-	this.registerurl='http://localhost:8080/api/register';
-	this.loginurl='http://localhost:8080/api/login';
-	this.profileurl='http://localhost:8080/api/profile';
-	this.logouturl='http://localhost:8080/api/logout';
+	this.url = 'https://webdev-summer-assignment.herokuapp.com/api/user';
+	this.registerurl='https://webdev-summer-assignment.herokuapp.com/api/register';
+	this.loginurl='https://webdev-summer-assignment.herokuapp.com/api/login';
+	this.profileurl='https://webdev-summer-assignment.herokuapp.com/api/profile';
+	this.logouturl='https://webdev-summer-assignment.herokuapp.com/api/logout';
 	this.createUser = createUser;
 	this.findAllUsers = findAllUsers;
 	this.deleteUser = deleteUser;
