@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.myapp.models.Assignment;
+import com.example.myapp.models.Exam;
 import com.example.myapp.models.Lesson;
+import com.example.myapp.models.Widget;
 import com.example.myapp.repositories.AssignmentRepository;
 import com.example.myapp.repositories.LessonRepository;
 
@@ -55,20 +57,18 @@ public class AssignmentService {
 		}
 		return null;
 	}
-	
-//	@GetMapping("/api/lesson/{lessonId}/assignment")
-//	public List<Widget> findAllAssignmentForLesson(@PathVariable("lessonId") int lessonId) {
-//		Optional<Lesson> optionalLesson = lessonRepository.findById(lessonId);
-//		if(optionalLesson.isPresent()) {
-//			Lesson lesson = optionalLesson.get();
-//			List<Widget> assignment = lesson.getWidgets();
-//			return assignment;
-//		}
-//		return null;
-//	}
-	
+		
 	@GetMapping("/api/assignment")
 	public List<Assignment> findAllAssignments() {
 		return (List<Assignment>) assignmentRepository.findAll();
+	}
+	
+	@GetMapping("/api/assignment/{assignmentId}")
+	public Assignment findAssignmentById(@PathVariable("assignmentId") int id) {
+		Optional<Assignment> assignment = assignmentRepository.findById(id);
+		if(assignment.isPresent()) {
+			return assignment.get();
+		}
+		return null;
 	}
 }
