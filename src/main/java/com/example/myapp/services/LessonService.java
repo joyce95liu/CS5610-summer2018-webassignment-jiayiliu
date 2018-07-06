@@ -5,63 +5,50 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.myapp.models.Course;
 import com.example.myapp.models.Lesson;
 import com.example.myapp.models.Module;
-import com.example.myapp.repositories.CourseRepository;
 import com.example.myapp.repositories.LessonRepository;
 import com.example.myapp.repositories.ModuleRepository;
 
 
+
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
-
+@CrossOrigin(origins = "*")
 public class LessonService {
+	@Autowired
+	LessonRepository lessonRepository;
+	@Autowired
+	ModuleRepository moduleRepository;
 	
-	 @Autowired
-	    ModuleRepository moduleRepository;
-	 
-	 @Autowired
-	    LessonRepository lessonRepository;
-	
-	  @GetMapping("/api/course/{courseId}/module/{moduleId}/lesson")
-		public List<Lesson> findAlllessonsForModule(@PathVariable("moduleId") int moduleId) {
-			Optional<Module> data = moduleRepository.findById(moduleId);
-			if (data.isPresent()) {
-				Module module = data.get();
-				return module.getLessons();
-			}
-			return null;
+	@GetMapping("/api/lesson")
+	public List<Lesson> findAllLessons() {
+		return (List<Lesson>) lessonRepository.findAll();
 	}
-	    
-	    
-	    @PostMapping("/api/course/{courseId}/module/{moduleId}/lesson")   
-	    	public Lesson createLesson(@PathVariable("moduleId") int moduleId, @RequestBody Lesson newLesson) {
-	    	    Optional<Module> data = moduleRepository.findById(moduleId);
-	    	    if(data.isPresent()) {
-	    	        Module module = data.get();
-	    	        newLesson.setModule(module);
-	    	        return lessonRepository.save(newLesson);
-	    	    }
-	    	    return null;
-	    	}
-	    
-	    @DeleteMapping("/api/lesson/{lessonId}")
-	    public void deleteModule(
-	    @PathVariable("lessonId") int id) {
-	    	lessonRepository.deleteById(id);
-	    }
-	    
-	    @GetMapping("/api/lesson")
-	    public Iterable<Lesson> findAllLessons() {
-	        return lessonRepository.findAll(); 
-	    }
-
+	
+	@GetMapping("/api/course/{cid}/module/{mid}/lesson")
+	public List<Lesson> findForModule(@PathVariable(name="mid") int moduleId) {
+		Optional<Module> optionalModule = moduleRepository.findById(moduleId);
+		if(optionalModule.isPresent()) {
+			Module module = optionalModule.get();
+			return (List<Lesson>) module.getLessons();
+		}
+		return null;
+	}
+	
+//	@GetMapping("api/lesson/{lessonId}/widgets")
+//	public List<Widget> findAllWidgetForLesson(@PathVariable(name="lessonId") int lessonId){
+//		Optional<Lesson> optionalLesson = lessonRepository.findById(lessonId);
+//		if(optionalLesson.isPresent()) {
+//			Lesson lesson = optionalLesson.get();
+//			return (List<Widget>) lesson.getWidgets();
+//		}
+//		return null;
+//	}
+	
 }

@@ -7,5 +7,6 @@ import com.example.myapp.models.Course;
 
 
 
-public interface CourseRepository
-extends CrudRepository<Course, Integer> { }
+public interface CourseRepository extends CrudRepository<Course, Integer> {
+
+}
