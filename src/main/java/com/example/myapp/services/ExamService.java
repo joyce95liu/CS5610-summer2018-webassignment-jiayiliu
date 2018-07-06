@@ -97,7 +97,7 @@ public class ExamService {
 		if(optional.isPresent()) {
 			Exam exam = optional.get();
 			exam.setDescription(newexam.getDescription());
-			exam.setTitle(newexam.getDescription());
+			exam.setTitle(newexam.getTitle());
 			exam.setQuestions(newexam.getQuestions());
 			examRepository.save(exam);
 			return exam;
