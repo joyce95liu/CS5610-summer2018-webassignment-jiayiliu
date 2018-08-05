@@ -7,12 +7,19 @@ import javax.persistence.Entity;
 @Entity
 public class Assignment extends Widget{
 
+	private String points;
+	public String getPoints() {
+		return points;
+	}
+	public void setPoints(String points) {
+		this.points = points;
+	}
 	private String title;
 	private String description;
 	private String essay;
 	private String file;
 	private String link;
-	
+		
 	public String getEssay() {
 		return essay;
 	}

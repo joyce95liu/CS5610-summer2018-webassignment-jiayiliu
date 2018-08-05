@@ -52,6 +52,7 @@ public class AssignmentService {
 			assignment.setDescription(newassignment.getDescription());
 			assignment.setEssay(newassignment.getEssay());
 			assignment.setTitle(newassignment.getTitle());
+			assignment.setPoints(newassignment.getPoints());
 			assignmentRepository.save(assignment);
 			return assignment;
 		}
